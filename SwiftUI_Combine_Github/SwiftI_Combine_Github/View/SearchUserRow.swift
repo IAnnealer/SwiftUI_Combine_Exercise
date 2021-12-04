@@ -1,6 +1,6 @@
 //
 //  SearchUserRow.swift
-//  SwiftI_Combine_Github
+//  SwiftUI_Combine_Github
 //
 //  Created by Ian on 2021/12/04.
 //
