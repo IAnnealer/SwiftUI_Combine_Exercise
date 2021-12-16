@@ -9,5 +9,20 @@ import Foundation
 import Combine
 
 struct StoryViewModel {
-    let id: Int
+
+    // MARK: - Properties
+
+    let story: Story
+
+    var id: Int {
+        return self.story.id
+    }
+
+    var title: String {
+        return self.story.title
+    }
+
+    var url: String {
+        return self.story.url
+    }
 }

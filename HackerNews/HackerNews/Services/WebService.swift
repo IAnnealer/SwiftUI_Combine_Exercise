@@ -20,11 +20,15 @@ class WebService {
 
     // MARK: - Methods
 
-    func getAllTopStories() -> AnyPublisher<[Int], Error> {
+    func getAllTopStories() -> AnyPublisher<[Story], Error> {
         return URLSession.shared.dataTaskPublisher(for: Self.url)
             .receive(on: RunLoop.main)
             .map(\.data)
             .decode(type: [Int].self, decoder: JSONDecoder())
+            .flatMap { storyIds in return self.mergeStories(ids: storyIds) }
+            .scan([], { stories, story -> [Story] in
+                return stories + [story]
+            })
             .eraseToAnyPublisher()
     }
 
@@ -39,5 +43,19 @@ class WebService {
             .decode(type: Story.self, decoder: JSONDecoder())
             .catch { _ in Empty<Story, Error>() }
             .eraseToAnyPublisher()
+    }
+}
+
+private extension WebService {
+    func mergeStories(ids storyIds: [Int]) -> AnyPublisher<Story, Error> {
+        let storyIds = Array(storyIds.prefix(50))
+        let initialPublisher = getStoryById(storyId: storyIds[0])
+        let remainer = Array(storyIds.dropFirst())
+
+        return remainer
+            .reduce(initialPublisher) { combined, id in
+                return combined.merge(with: getStoryById(storyId: id))
+                    .eraseToAnyPublisher()
+            }
     }
 }

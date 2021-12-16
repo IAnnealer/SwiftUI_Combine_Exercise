@@ -19,7 +19,7 @@ struct StoryListView: View {
         NavigationView {
             List(self.storyListViewModel.stories, id: \.id) { storyViewModel in
                 NavigationLink(destination: StoryDetailView(storyId: storyViewModel.id), label: {
-                    Text("\(storyViewModel.id)")
+                    Text("\(storyViewModel.title)")
                 })
             }
             .navigationTitle("Hacker News")
