@@ -13,23 +13,22 @@ class StoryDetailViewModel: ObservableObject {
     // MARK: - Properties
 
     var storyId: Int
+    var title: String?
+    var url: URL?
     private var cancellable: AnyCancellable?
 
-    @Published private var story: Story!
-
-    var title: String {
-        return self.story.title
-    }
-
-    var url: URL
-    {
-        return URL(string: self.story.url)!
+    @Published private var story: Story! {
+        didSet {
+            self.title = story.title
+            self.url = URL(string: story.url)
+        }
     }
 
     // MARK: - Initializer
     init(storyId: Int) {
         self.storyId = storyId
         self.cancellable = WebService.shared.getStoryById(storyId: storyId)
+            .catch { _ in Just(Story.placeholder()) }
             .sink(receiveCompletion: { _ in }, receiveValue: {
                 self.story = $0
             })
