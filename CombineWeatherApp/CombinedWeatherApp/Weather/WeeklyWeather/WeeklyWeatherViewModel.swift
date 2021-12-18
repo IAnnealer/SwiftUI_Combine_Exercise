@@ -11,8 +11,15 @@ class WeeklyWeatherViewModel: ObservableObject, Identifiable {
   private var disposables = Set<AnyCancellable>()
 
   // MARK: - Initializer
-  init(weatherFetcher: WeatherFetchable) {
+  init(weatherFetcher: WeatherFetchable, scheduler: DispatchQueue = DispatchQueue(label: "WeatherViewModel")) {
     self.weatherFetcher = weatherFetcher
+
+    // View의 TextField에서 입력받은 값을 통해 weather fetching
+    $city
+      .dropFirst(1)
+      .debounce(for: .seconds(0.5), scheduler: scheduler)
+      .sink(receiveValue: fetchWeather(forCity:))
+      .store(in: &disposables)
   }
 
   // MARK: - Methods
