@@ -12,8 +12,10 @@ struct StoryDetailView: View {
     // MARK: - Properties
 
     @ObservedObject private var storyDetailViewModel: StoryDetailViewModel
+    private var storyId: Int
 
     init(storyId: Int) {
+        self.storyId = storyId
         self.storyDetailViewModel = StoryDetailViewModel(storyId: storyId)
     }
  
@@ -21,6 +23,8 @@ struct StoryDetailView: View {
         VStack {
             Text(self.storyDetailViewModel.title ?? "")
             WebView(url: self.storyDetailViewModel.url ?? "")
+        }.onAppear {
+            self.storyDetailViewModel.fetchStoryDetails(storyId: storyId)
         }
     }
 }

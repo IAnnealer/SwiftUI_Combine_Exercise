@@ -27,6 +27,11 @@ class StoryDetailViewModel: ObservableObject {
     // MARK: - Initializer
     init(storyId: Int) {
         self.storyId = storyId
+    }
+
+    // MARK: - Methods
+
+    func fetchStoryDetails(storyId: Int) {
         self.cancellable = WebService.shared.getStoryById(storyId: storyId)
             .catch { _ in Just(Story.placeholder()) }
             .sink(receiveCompletion: { _ in }, receiveValue: {
