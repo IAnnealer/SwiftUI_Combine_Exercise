@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		86A494BD276DF6700087A51F /* WeatherFetchable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86A494BC276DF6700087A51F /* WeatherFetchable.swift */; };
 		B222515C22D370C60035C1A1 /* WeeklyWeatherBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = B222515B22D370C60035C1A1 /* WeeklyWeatherBuilder.swift */; };
 		B22B78A522DF3C92004F21B9 /* Formatters.swift in Sources */ = {isa = PBXBuildFile; fileRef = B22B78A222DF3C92004F21B9 /* Formatters.swift */; };
 		B22B78A622DF3C92004F21B9 /* Array+Filtering.swift in Sources */ = {isa = PBXBuildFile; fileRef = B22B78A422DF3C92004F21B9 /* Array+Filtering.swift */; };
@@ -31,6 +32,7 @@
 
 /* Begin PBXFileReference section */
 		18D775BD22AD944300AE281E /* CombinedWeatherApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CombinedWeatherApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		86A494BC276DF6700087A51F /* WeatherFetchable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherFetchable.swift; sourceTree = "<group>"; };
 		B222515B22D370C60035C1A1 /* WeeklyWeatherBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeeklyWeatherBuilder.swift; sourceTree = "<group>"; };
 		B22B78A222DF3C92004F21B9 /* Formatters.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Formatters.swift; sourceTree = "<group>"; };
 		B22B78A422DF3C92004F21B9 /* Array+Filtering.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+Filtering.swift"; sourceTree = "<group>"; };
@@ -138,6 +140,7 @@
 				B22B78A922DF3E54004F21B9 /* Responses.swift */,
 				B263E4B322C78C95009D0E0E /* WeatherFetcher.swift */,
 				B263E4B222C78C95009D0E0E /* WeatherError.swift */,
+				86A494BC276DF6700087A51F /* WeatherFetchable.swift */,
 			);
 			path = OpenWeatherAPI;
 			sourceTree = "<group>";
@@ -263,6 +266,7 @@
 			files = (
 				B22B78AA22DF3E54004F21B9 /* Responses.swift in Sources */,
 				B26EE1F922C7C575008B6B1D /* Parsing.swift in Sources */,
+				86A494BD276DF6700087A51F /* WeatherFetchable.swift in Sources */,
 				B263E4BE22C78C95009D0E0E /* WeeklyWeatherView.swift in Sources */,
 				B22B78A522DF3C92004F21B9 /* Formatters.swift in Sources */,
 				B222515C22D370C60035C1A1 /* WeeklyWeatherBuilder.swift in Sources */,

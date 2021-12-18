@@ -30,10 +30,43 @@ import Foundation
 import Combine
 
 class WeatherFetcher {
+
+  // MARK: - Properties
   private let session: URLSession
-  
+
+  // MARK: - Initializer
   init(session: URLSession = .shared) {
     self.session = session
+  }
+}
+
+// MARK: - WeatherFetchable
+extension WeatherFetcher: WeatherFetchable {
+  func weeklyWeatherForecast(forCity city: String) -> AnyPublisher<WeeklyForecastResponse, WeatherError> {
+    return forecast(with: makeWeeklyForecastComponents(withCity: city))
+  }
+
+  func currentWeatherForecast(forCity city: String) -> AnyPublisher<CurrentWeatherForecastResponse, WeatherError> {
+    return forecast(with: makeCurrentDayForecastComponents(withCity: city))
+  }
+
+  private func forecast<T>(with components: URLComponents) -> AnyPublisher<T, WeatherError> where T: Decodable {
+    guard let url = components.url else {
+      let error = WeatherError.network(description: "Couldn't create URL")
+      // if fail
+      return Fail(error: error)
+        .eraseToAnyPublisher()
+    }
+
+    // if success
+    return session.dataTaskPublisher(for: url)
+      .mapError { error in
+        .network(description: error.localizedDescription)
+      }
+      .flatMap(maxPublishers: .max(1)) { pair in
+        decode(pair.data)
+      }
+      .eraseToAnyPublisher()
   }
 }
 
@@ -46,9 +79,7 @@ private extension WeatherFetcher {
     static let key = "92c1b761d309a37bcba0684c8181167c"
   }
   
-  func makeWeeklyForecastComponents(
-    withCity city: String
-  ) -> URLComponents {
+  func makeWeeklyForecastComponents(withCity city: String) -> URLComponents {
     var components = URLComponents()
     components.scheme = OpenWeatherAPI.scheme
     components.host = OpenWeatherAPI.host
@@ -64,9 +95,7 @@ private extension WeatherFetcher {
     return components
   }
   
-  func makeCurrentDayForecastComponents(
-    withCity city: String
-  ) -> URLComponents {
+  func makeCurrentDayForecastComponents(withCity city: String) -> URLComponents {
     var components = URLComponents()
     components.scheme = OpenWeatherAPI.scheme
     components.host = OpenWeatherAPI.host
