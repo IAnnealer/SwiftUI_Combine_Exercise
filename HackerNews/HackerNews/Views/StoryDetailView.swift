@@ -16,10 +16,11 @@ struct StoryDetailView: View {
     init(storyId: Int) {
         self.storyDetailViewModel = StoryDetailViewModel(storyId: storyId)
     }
-
+ 
     var body: some View {
         VStack {
             Text(self.storyDetailViewModel.title ?? "")
+            WebView(url: self.storyDetailViewModel.url ?? "")
         }
     }
 }

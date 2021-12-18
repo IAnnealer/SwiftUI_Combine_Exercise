@@ -14,13 +14,13 @@ class StoryDetailViewModel: ObservableObject {
 
     var storyId: Int
     var title: String?
-    var url: URL?
+    var url: String?
     private var cancellable: AnyCancellable?
 
     @Published private var story: Story! {
         didSet {
             self.title = story.title
-            self.url = URL(string: story.url)
+            self.url = story.url
         }
     }
 
