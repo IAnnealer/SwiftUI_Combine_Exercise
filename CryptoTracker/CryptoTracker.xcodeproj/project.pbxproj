@@ -20,6 +20,7 @@
 		866DDC12276E1F6B0011EAC1 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 866DDC11276E1F6B0011EAC1 /* HomeView.swift */; };
 		866DDC18276E20820011EAC1 /* CircleButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 866DDC17276E20820011EAC1 /* CircleButtonView.swift */; };
 		866DDC1A276E24140011EAC1 /* CircleButtonAnimationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 866DDC19276E24140011EAC1 /* CircleButtonAnimationView.swift */; };
+		86DF8ADB276F4A1900C0E95B /* CoinDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86DF8ADA276F4A1900C0E95B /* CoinDataService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,6 +38,7 @@
 		866DDC11276E1F6B0011EAC1 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		866DDC17276E20820011EAC1 /* CircleButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleButtonView.swift; sourceTree = "<group>"; };
 		866DDC19276E24140011EAC1 /* CircleButtonAnimationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleButtonAnimationView.swift; sourceTree = "<group>"; };
+		86DF8ADA276F4A1900C0E95B /* CoinDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinDataService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -162,6 +164,7 @@
 		86DF8AD9276F48F900C0E95B /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				86DF8ADA276F4A1900C0E95B /* CoinDataService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -236,6 +239,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				86DF8ADB276F4A1900C0E95B /* CoinDataService.swift in Sources */,
 				860F78EA276F339F00F9A3FC /* CoinRowView.swift in Sources */,
 				860F78F0276F3F7B00F9A3FC /* HomeViewModel.swift in Sources */,
 				866DDBFB276E1B2C0011EAC1 /* ContentView.swift in Sources */,
