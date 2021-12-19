@@ -77,7 +77,8 @@
 		866DDBF7276E1B2C0011EAC1 /* CryptoTracker */ = {
 			isa = PBXGroup;
 			children = (
-				866DDC0B276E1F1F0011EAC1 /* Sources */,
+				86DF8AD9276F48F900C0E95B /* Services */,
+				866DDC0B276E1F1F0011EAC1 /* Scenes */,
 				866DDC08276E1BE60011EAC1 /* Extensions */,
 				866DDBF8276E1B2C0011EAC1 /* CryptoTrackerApp.swift */,
 				866DDBFA276E1B2C0011EAC1 /* ContentView.swift */,
@@ -105,14 +106,14 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
-		866DDC0B276E1F1F0011EAC1 /* Sources */ = {
+		866DDC0B276E1F1F0011EAC1 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
 				860F78E6276F13D000F9A3FC /* Models */,
 				866DDC0C276E1F310011EAC1 /* Home */,
 				866DDC13276E203E0011EAC1 /* Components */,
 			);
-			path = Sources;
+			path = Scenes;
 			sourceTree = "<group>";
 		};
 		866DDC0C276E1F310011EAC1 /* Home */ = {
@@ -156,6 +157,13 @@
 				866DDC19276E24140011EAC1 /* CircleButtonAnimationView.swift */,
 			);
 			path = CircleButton;
+			sourceTree = "<group>";
+		};
+		86DF8AD9276F48F900C0E95B /* Services */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Services;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

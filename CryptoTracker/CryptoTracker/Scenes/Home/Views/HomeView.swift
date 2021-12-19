@@ -28,9 +28,11 @@ struct HomeView: View {
                 if !showPortfolio {
                     allCoinsList
                         .transition(.move(edge: .leading))
+                        .animation(.default)
                 } else {
                     portfolioCoinsList
                         .transition(.move(edge: .trailing))
+                        .animation(.default)
                 }
 
                 Spacer(minLength: 0)
