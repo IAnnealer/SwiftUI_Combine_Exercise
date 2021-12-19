@@ -72,6 +72,8 @@ struct Coin: Codable, Identifiable {
         Int(marketCapRank ?? 0)
     }
 
+    // MARK: - Methods
+
     func updateHoldings(amount: Double) -> Coin {
         return Coin(id: self.id, symbol: self.symbol,
                     name: self.name, image: self.image,
