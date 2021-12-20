@@ -31,7 +31,7 @@ struct HomeView: View {
                         .animation(.default)
                 } else {
                     portfolioCoinsList
-                        .transition(.move(edge: .trailing))
+                        .transition(.move(edge: .leading))
                         .animation(.default)
                 }
 
