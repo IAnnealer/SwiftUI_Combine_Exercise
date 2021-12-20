@@ -29,30 +29,15 @@ class CoinDataService {
             return
         }
 
-        subscription = URLSession.shared.dataTaskPublisher(for: url)
-            .subscribe(on: DispatchQueue.global(qos: .default))     // On Sub-Thread
-            .tryMap { output -> Data in
-                guard let resposne = output.response as? HTTPURLResponse,
-                      resposne.statusCode >= 200 && resposne.statusCode < 300 else {
-                          throw URLError(.badServerResponse)
-                      }
-
-                return output.data
-            }
-            .receive(on: DispatchQueue.main)        // On Main-Thread
+        subscription = NetworkingManager.download(url: url)
             .decode(type: [Coin].self, decoder: JSONDecoder())
-            .sink(receiveCompletion: { completion in
-                switch completion {
-                case .finished:
-                    break
-                case .failure(let err):
-                    print(err.localizedDescription)
-                }
-            }, receiveValue: { [weak self] coins in
+            .sink(receiveCompletion: NetworkingManager.handleCompletion(completion:),
+                  receiveValue: { [weak self] in
                 guard let self = self else {
                     return
                 }
-                self.allCoins = coins
+
+                self.allCoins = $0
                 self.subscription?.cancel()
             })
     }
