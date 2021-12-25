@@ -10,7 +10,8 @@ import SwiftUI
 @main
 struct CryptoTrackerApp: App {
 
-    @StateObject private var homeViewModel = HomeViewModel()
+    @StateObject private var homeViewModel = HomeViewModel(coinDataService: CoinDataService(),
+                                                           marketDataService: MarketDataService())
 
     var body: some Scene {
         WindowGroup {
