@@ -26,7 +26,8 @@ class DeveloperPreview {
 
     private init() { }
 
-    let homeViewModel = HomeViewModel()
+    let homeViewModel = HomeViewModel(coinDataService: CoinDataService(),
+                                      marketDataService: MarketDataService())
 
     let stat1 = Statistic(title: "Market Cap", value: "$12.5Bn", percentageChange: 25.34)
     let stat2 = Statistic(title: "Total Volume", value: "$1.23Tr")
