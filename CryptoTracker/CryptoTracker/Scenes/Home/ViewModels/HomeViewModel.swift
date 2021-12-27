@@ -19,17 +19,30 @@ final class HomeViewModel: ObservableObject {
 
     private let coinDataService: CoinDataService
     private let marketDataService: MarketDataService
+    private let portfolioDataService: PortfolioDataService
+
     private var cancellable = Set<AnyCancellable>()
 
     // MARK: - Initializer
 
-    init(coinDataService: CoinDataService, marketDataService: MarketDataService) {
+    init(coinDataService: CoinDataService,
+         marketDataService: MarketDataService,
+         portfolioDataService: PortfolioDataService) {
         self.coinDataService = coinDataService
         self.marketDataService = marketDataService
+        self.portfolioDataService = portfolioDataService
+
         addSubscribers()
+    }
+
+    // MARK: - Methods
+
+    func updatePortfolio(coin: Coin, amount: Double) {
+        portfolioDataService.updatePortfolio(coin: coin, amount: amount)
     }
 }
 
+// MARK: - Private Extension
 private extension HomeViewModel {
     func addSubscribers() {
         coinDataService.$allCoins
@@ -47,10 +60,28 @@ private extension HomeViewModel {
             })
             .store(in: &cancellable)
 
+        // 마켓 데이터 업데이트
         marketDataService.$marketData
             .map(mapGlobalMarketData )
             .sink(receiveValue: { [weak self] in
                 self?.statistics = $0
+            })
+            .store(in: &cancellable)
+
+        // 포트폴리오 업데이트
+        $allCoins
+            .combineLatest(portfolioDataService.$savedEntities)
+            .map { coins, portfoliEntities -> [Coin] in
+                coins
+                    .compactMap { coin -> Coin? in
+                        guard let entity = portfoliEntities.first(where: { ($0.coinID ?? "") == coin.id }) else {
+                            return nil
+                        }
+                        return coin.updateHoldings(amount: entity.amount)
+                    }
+            }
+            .sink(receiveValue: { [weak self] in
+                self?.portfolioCoins = $0
             })
             .store(in: &cancellable)
     }
