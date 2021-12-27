@@ -11,7 +11,8 @@ import SwiftUI
 struct CryptoTrackerApp: App {
 
     @StateObject private var homeViewModel = HomeViewModel(coinDataService: CoinDataService(),
-                                                           marketDataService: MarketDataService())
+                                                           marketDataService: MarketDataService(),
+                                                           portfolioDataService: PortfolioDataService())
 
     init() {
         UINavigationBar.appearance().largeTitleTextAttributes = [.foregroundColor: UIColor(Color.theme.accent)]

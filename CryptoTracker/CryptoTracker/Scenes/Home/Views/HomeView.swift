@@ -34,11 +34,11 @@ struct HomeView: View {
                 if !showPortfolio {
                     allCoinsList
                         .transition(.move(edge: .leading))
-                        .animation(.default)
+                        .animation(.default, value: showPortfolio == false)
                 } else {
                     portfolioCoinsList
                         .transition(.move(edge: .leading))
-                        .animation(.default)
+                        .animation(.default, value: showPortfolio != false)
                 }
 
                 Spacer(minLength: 0)

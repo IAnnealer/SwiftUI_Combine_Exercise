@@ -9,6 +9,8 @@ import SwiftUI
 
 struct PortfolioView: View {
 
+    // MARK: - Properties
+
     @ObservedObject var viewModel: HomeViewModel
     @State private var selectedCoin: Coin? = nil
     @State private var quantityText: String = ""
@@ -32,6 +34,12 @@ struct PortfolioView: View {
                 ToolbarItem(placement: .navigationBarLeading, content: { XMarkButton() })
                 ToolbarItem(placement: .navigationBarTrailing, content: { trailingNavButton })
             })
+            // onChange의 of 인자의 값이 변경되면 perform block이 실행된다.
+            .onChange(of: viewModel.searchText, perform: { searchedText in
+                if searchedText == "" {
+                    removeSelectedCoin()
+                }
+            })
         }
     }
 }
@@ -42,17 +50,19 @@ struct PortfolioVIew_Previews: PreviewProvider {
     }
 }
 
+// MARK: - Private Extension
 private extension PortfolioView {
     var coingLogoList: some View {
         ScrollView(.horizontal, showsIndicators: false, content: {
             LazyHStack(spacing: 10) {
-                ForEach(viewModel.allCoins, content: { coin in
+                ForEach(viewModel.searchText.isEmpty ? viewModel.portfolioCoins : viewModel.allCoins,
+                        content: { coin in
                     CoinLogoView(coin: coin)
                         .frame(width: 60)
                         .padding(4)
                         .onTapGesture {
                             withAnimation(.easeIn, {
-                                selectedCoin = coin
+                                updateSelectedCoin(coin: coin)
                             })
                         }
                         .background(
@@ -111,6 +121,17 @@ private extension PortfolioView {
         .font(.headline)
     }
 
+    func updateSelectedCoin(coin: Coin) {
+        selectedCoin = coin
+
+        if let portfolioCoin = viewModel.portfolioCoins.first(where: { $0.id == coin.id }),
+           let amount = portfolioCoin.currentHoldings {
+            quantityText = "\(amount)"
+        } else {
+            quantityText = ""
+        }
+    }
+
     func getCurrentValue() -> Double {
         if let quantity = Double(quantityText) {
             return quantity * (selectedCoin?.currentPrice ?? 0)
@@ -119,7 +140,12 @@ private extension PortfolioView {
     }
 
     func didTapSaveButton() {
-        guard let coin = selectedCoin else { return }
+        guard let coin = selectedCoin,
+              let amount = Double(quantityText) else {
+                  return
+              }
+
+        viewModel.updatePortfolio(coin: coin, amount: amount)
 
         withAnimation(.easeIn, {
             showCheckmark = true
