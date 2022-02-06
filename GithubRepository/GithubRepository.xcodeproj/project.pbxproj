@@ -14,6 +14,10 @@
 		8652535F27AE60F800B1DCD5 /* AnySubscription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8652535E27AE60F800B1DCD5 /* AnySubscription.swift */; };
 		8652536127AE615A00B1DCD5 /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8652536027AE615A00B1DCD5 /* Repository.swift */; };
 		8652536327AE619100B1DCD5 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8652536227AE619100B1DCD5 /* User.swift */; };
+		8652536727AE620700B1DCD5 /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8652536627AE620700B1DCD5 /* APIService.swift */; };
+		8652536927AFF8CC00B1DCD5 /* APIServiceError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8652536827AFF8CC00B1DCD5 /* APIServiceError.swift */; };
+		868C56E127B018DE0017A807 /* APIRequestType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 868C56E027B018DE0017A807 /* APIRequestType.swift */; };
+		868C56E327B018EA0017A807 /* APIServiceType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 868C56E227B018EA0017A807 /* APIServiceType.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,6 +29,10 @@
 		8652535E27AE60F800B1DCD5 /* AnySubscription.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnySubscription.swift; sourceTree = "<group>"; };
 		8652536027AE615A00B1DCD5 /* Repository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Repository.swift; sourceTree = "<group>"; };
 		8652536227AE619100B1DCD5 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		8652536627AE620700B1DCD5 /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
+		8652536827AFF8CC00B1DCD5 /* APIServiceError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIServiceError.swift; sourceTree = "<group>"; };
+		868C56E027B018DE0017A807 /* APIRequestType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRequestType.swift; sourceTree = "<group>"; };
+		868C56E227B018EA0017A807 /* APIServiceType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIServiceType.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +66,7 @@
 			isa = PBXGroup;
 			children = (
 				8652535C27AE60C300B1DCD5 /* App */,
+				8652536527AE61FD00B1DCD5 /* Services */,
 				8652535D27AE60D600B1DCD5 /* Models */,
 				8652535027AE60B300B1DCD5 /* ContentView.swift */,
 				8652535227AE60B400B1DCD5 /* Assets.xcassets */,
@@ -90,6 +99,25 @@
 				8652536227AE619100B1DCD5 /* User.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		8652536527AE61FD00B1DCD5 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				868C56DF27B018D40017A807 /* Protocols */,
+				8652536627AE620700B1DCD5 /* APIService.swift */,
+				8652536827AFF8CC00B1DCD5 /* APIServiceError.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		868C56DF27B018D40017A807 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				868C56E027B018DE0017A807 /* APIRequestType.swift */,
+				868C56E227B018EA0017A807 /* APIServiceType.swift */,
+			);
+			path = Protocols;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -164,8 +192,12 @@
 			files = (
 				8652535127AE60B300B1DCD5 /* ContentView.swift in Sources */,
 				8652535F27AE60F800B1DCD5 /* AnySubscription.swift in Sources */,
+				8652536927AFF8CC00B1DCD5 /* APIServiceError.swift in Sources */,
 				8652534F27AE60B300B1DCD5 /* GithubRepositoryApp.swift in Sources */,
+				868C56E127B018DE0017A807 /* APIRequestType.swift in Sources */,
+				868C56E327B018EA0017A807 /* APIServiceType.swift in Sources */,
 				8652536327AE619100B1DCD5 /* User.swift in Sources */,
+				8652536727AE620700B1DCD5 /* APIService.swift in Sources */,
 				8652536127AE615A00B1DCD5 /* Repository.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
